@@ -55,20 +55,21 @@ class ProfessionalFileRenamer:
            logging.warning(f"File already exists: {e}")
 
 if __name__ == '__main__':
-    print(f"Current directory is {os.path.abspath(os.curdir)}")
+    print(f"Current directory is {os.path.abspath(os.curdir)}") # Show current directory
     filenames_retriever: FilenamesRetriever = SimpleFilenamesRetriever()
     filenames_filterer: FilenamesFilterer = WildcardFilenameFilterer()
     filename_creator: FilenameCreator = ExtensionFilenameCreator()
     rename_applier: RenameApplier = SimpleRenameApplier()
 
+    # create the main renamer object
     renamer: ProfessionalFileRenamer = ProfessionalFileRenamer(
         filenames_retriever=filenames_retriever,
         filenames_filterer=filenames_filterer,
         filename_creator=filename_creator,
         rename_applier=rename_applier)
-
+    # get user input
     path: str = input("Enter the path of the directory: ")
     from_extension: str = input("Enter the extension of the files to be renamed: ")
     to_extension: str = input("Enter the extension of the files after renaming: ")
-
+    # execute the renaming
     renamer.rename_files(path=path, from_extension=from_extension, to_extension=to_extension)
