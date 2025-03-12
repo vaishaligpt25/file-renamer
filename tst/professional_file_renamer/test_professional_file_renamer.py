@@ -15,8 +15,9 @@ from src.professional_file_renamer.professional_file_renamer import Professional
 from src.professional_file_renamer.rename_applier.rename_applier import RenameApplier
 from src.professional_file_renamer.rename_applier.simple_rename_applier import SimpleRenameApplier
 
-
+# class definition and constants:
 class TestProfessionalRenameApplier(unittest.TestCase):
+    # Test constants
     TEST_DIR_NAME: str = "test_dir"
     TEST_FILE_NAME_1: str = "test_file_1.txt"
     TEST_FILE_NAME_2: str = "test_file_1.json"
@@ -29,17 +30,21 @@ class TestProfessionalRenameApplier(unittest.TestCase):
         self._create_subject()   # Creates the object being tested
         self._create_test_files()  # Creates any files needed for testing
 
+    # Subject Creation:
     def _create_subject(self) -> None:
+        # create all necessary components:
         filenames_retriever: FilenamesRetriever = SimpleFilenamesRetriever()
         filenames_filterer: FilenamesFilterer = WildcardFilenameFilterer()
         filename_creator: FilenameCreator = ExtensionFilenameCreator()
         rename_applier: RenameApplier = SimpleRenameApplier()
+        # create the main object being tested:
         self.subject: ProfessionalFileRenamer = ProfessionalFileRenamer(
             filenames_retriever=filenames_retriever,
             filenames_filterer=filenames_filterer,
             filename_creator=filename_creator,
             rename_applier=rename_applier)
-
+        # This helper method:
+        # >Creates instances of all required components
     def _create_test_files(self) -> None:
         # clean up any existing test files
         self.tearDown()
