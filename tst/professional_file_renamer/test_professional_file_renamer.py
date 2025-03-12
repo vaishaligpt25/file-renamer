@@ -22,7 +22,7 @@ class TestProfessionalRenameApplier(unittest.TestCase):
     TEST_FILE_NAME_1: str = "test_file_1.txt"
     TEST_FILE_NAME_2: str = "test_file_1.json"
     TEST_FILE_NAMES: List[str] = [TEST_FILE_NAME_1, TEST_FILE_NAME_2]
-
+    # subject declaration
     subject: ProfessionalFileRenamer
 
     @override
@@ -53,6 +53,18 @@ class TestProfessionalRenameApplier(unittest.TestCase):
         #create empty test files
         for test_file_name in TestProfessionalRenameApplier.TEST_FILE_NAMES:
             open(os.path.join(self.TEST_DIR_NAME, test_file_name), "w").close()
+        # os.path.join(self.TEST_DIR_NAME, test_file_name)
+            #> combine "test_dir" with each filename
+            # create proper path like:
+            # > test_dir/test_file_1.txt
+        # open(.......,"w")
+        #     open file in write mode
+        #     create new file if it does not exist
+        #     will overwrite if exists
+
+        # .close()
+        #     immediately closes the file
+        #     result in empty file creation
 
     @override
     def tearDown(self) -> None:
